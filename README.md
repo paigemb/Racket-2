@@ -4,18 +4,18 @@ CSDS 345
 
 For questions 1-7, write Scheme definitions for the following functions using continuation passing style (CPS). The continuation argument should be the last argument. For example, if you were asked to write factorial, the ''normal'' recursive function is:
 
-(define factorial
+```(define factorial
   (lambda (n)
     (if (zero? n)
         1
-        (* n (factorial (- n 1))))))
+        (* n (factorial (- n 1))))))```
 and so your answer should be
 
-(define factorial-cps
+```(define factorial-cps
   (lambda (n return)
     (if (zero? n)
         (return 1)
-        (factorial-cps (- n 1) (lambda (v) (return (* n v)))))))
+        (factorial-cps (- n 1) (lambda (v) (return (* n v)))))))```
 For full marks, all recursive calls of your function should use only the first stack frame.  You do not have to convert simple scheme built-in non-recursive functions like null?, eq?, list?, number?, car, cons, cdr to CPS, but all other helper functions you create should be in CPS.
 
 For question 8, write the function so that it calls another function in CPS and using an appropriate return continuation.

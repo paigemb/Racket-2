@@ -8,14 +8,18 @@ For questions 1-7, write Scheme definitions for the following functions using co
   (lambda (n)
     (if (zero? n)
         1
-        (* n (factorial (- n 1))))))```
+        (* n (factorial (- n 1))))))
+        ```
+        
 and so your answer should be
 
 ```(define factorial-cps
   (lambda (n return)
     (if (zero? n)
         (return 1)
-        (factorial-cps (- n 1) (lambda (v) (return (* n v)))))))```
+        (factorial-cps (- n 1) (lambda (v) (return (* n v)))))))
+        ```
+        
 For full marks, all recursive calls of your function should use only the first stack frame.  You do not have to convert simple scheme built-in non-recursive functions like null?, eq?, list?, number?, car, cons, cdr to CPS, but all other helper functions you create should be in CPS.
 
 For question 8, write the function so that it calls another function in CPS and using an appropriate return continuation.
@@ -23,17 +27,27 @@ For question 8, write the function so that it calls another function in CPS and 
 For questions 9 and 10, write the function using call/cc and a helper function.  The helper function should be the only recursive function, and it should use "normal" recursion instead of tail recursion.
 
 dotproduct takes a two vectors (lists of numbers) and computes the dot product of the vectors. If one list is longer than the other, you can ignore the extra numbers of the longer list.
+
+```
 > (dotproduct '(1 2 3) '(-2 1 5))
 15
+```
+
 removesubsequence takes two lists of atoms. The first list is a subsequence of the second list. The method should return the second list with the first occurrence of the subsequence removed. So, if the first list is '(a b c), the first a if the second list is removed, the first b that appears after the removed a is removed, and the first c that appears after the removed b is removed.
+
+```
 > (removesubsequence '(1 3 5) '(0 1 2 3 4 5 6))
 (0 2 4 6)
 > (removesubsequence '(1 3 5) '(5 4 3 2 1 2 3 4 5))
 (5 4 3 2 2 4)
 > (removesubsequence '(a b c) '(d b c a c b a b c))
 (d b c c a b)
+```
+
 squareroot takes two numbers, a value and an iteration. The iteration will be an integer greater than or equal to 0. The method will compute the squareroot of the value using iteration rounds of Newton's method, starting with an initial value equal to the input value.
 Newton's method is new = old - ((old * old) - value) / (2 * old)
+
+```
 > (squareroot 5.0 0)
 5.0
 > (squareroot 5.0 1)
@@ -42,6 +56,8 @@ Newton's method is new = old - ((old * old) - value) / (2 * old)
 2.236067977499978
 > (squareroot 5 5)
 2 514229/2178309
+```
+
 numatoms* takes a nested list and returns the number of atoms (not including the empty list) in the list
 > (numatoms* '(a (a (a b) c) a))
 6
